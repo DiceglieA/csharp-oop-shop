@@ -16,7 +16,7 @@ namespace csharp_oop_shop
         private float iva;
         public Prodotto(string nome, string descrizione, float prezzo, float iva)
         {
-            this.codice = generaCodice();
+            this.codice = setCodice();
             this.nome = nome;
             this.descrizione = descrizione;
             this.prezzo = prezzo;
@@ -59,22 +59,33 @@ namespace csharp_oop_shop
         {
             return iva;
         }
-
-        public int getCodice()
-        {
-            return codice;
-        }
-        private int generaCodice()
+        private int setCodice()
         {
             Random random = new Random();
             return random.Next(10000);
         }
+        private string completaCodice()
+        {
+            string result = "";
 
-        override
-        public string ToString()
+            result = codice.ToString();
+            for (int i = 0; i < 8; i++)
+            {
+                if (result.Length < 8)
+                    result = "0" + result;
+            }
+
+            return result;
+        }
+        public int getCodice()
+        {
+            return codice;
+        }
+
+        override public string ToString()
         {
             return "Prodotto:\n" +
-                    "Codice: " + creaCodice() + "\n" +
+                    "Codice: " + completaCodice() + "\n" +
                     "Nome: '" + nome + "'\n" +
                     "Descrizione: '" + descrizione + "'\n" +
                     "Prezzo: " + prezzo + "\n" +
@@ -91,18 +102,6 @@ namespace csharp_oop_shop
             return "Nome esteso:" + codice + " - " + nome + "\n";
         }
 
-        private string creaCodice()
-        {
-            string result = "";
-
-            result = codice.ToString();
-            for (int i = 0; i < 8; i++)
-            {
-                if (result.Length < 8)
-                    result = "0" + result;
-            }
-            
-            return result;
-        }
+       
     }
 }
