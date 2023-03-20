@@ -73,7 +73,7 @@ namespace csharp_oop_shop
             {
                 if (result.Length < 8)
                     result = "0" + result;
-            }
+            } 
 
             return result;
         }
